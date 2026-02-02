@@ -124,4 +124,16 @@ foreach(bits IN ITEMS ${SECSIDH_PARAMETER_SETS_CTIDH})
     endif()
 endforeach()
 
+# ----- CTIDH-512 test (like ctidh-2047m4l205.main): built from scripts/new_primes/genSteps
+set(GENSTEPS_DIR ${CMAKE_SOURCE_DIR}/scripts/new_primes/genSteps)
+add_custom_target(ctidh-512.main ALL
+    COMMAND ${CMAKE_MAKE_PROGRAM} -C ${GENSTEPS_DIR} ctidh-512.main
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GENSTEPS_DIR}/ctidh-512.main ${CMAKE_CURRENT_BINARY_DIR}/ctidh-512.main
+    COMMENT "Building ctidh-512.main (same test format as ctidh-2047m4l205.main)"
+    VERBATIM
+)
+add_custom_command(TARGET ctidh-512.main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Run: ./main/ctidh-512.main"
+)
+
 

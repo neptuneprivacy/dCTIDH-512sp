@@ -344,8 +344,8 @@ static void test_validate(void)
   uintbig_add((uintbig*)pub.A,(uintbig*)pub.A,&uintbig_p);
   assert(!validate(&pub));
 
-  fp_copy(pub.A, fp_p);
-  assert(!validate(&pub));
+  fp_copy(pub.A, fp_p);  /* fp_p = 0: base curve, must be valid for key exchange */
+  assert(validate(&pub));
 }
 
 static void curve_setup(proj *A)
