@@ -29,6 +29,13 @@ extern "C" {
 int secsidh_keygen(uint8_t *pk, uint8_t *sk);
 
 /**
+ * Compute public key from secret key (sk -> pk).
+ * pk: output public key (CTIDH512_PK_SIZE bytes)
+ * sk: secret key (CTIDH512_SK_SIZE bytes)
+ */
+int secsidh_sk_to_pk(uint8_t *pk, const uint8_t *sk);
+
+/**
  * Derive shared secret from peer's public key and own secret key.
  * ss: output shared secret (CTIDH512_SS_SIZE bytes)
  * pk: peer's public key (CTIDH512_PK_SIZE bytes)

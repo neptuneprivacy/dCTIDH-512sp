@@ -69,6 +69,23 @@ int secsidh_keygen(uint8_t *pk, uint8_t *sk)
     return SECSIDH_SUCCESS;
 }
 
+/**
+ * Compute public key from secret key (sk -> pk).
+ * pk: output public key (CTIDH512_PK_SIZE bytes)
+ * sk: secret key (CTIDH512_SK_SIZE bytes)
+ */
+int secsidh_sk_to_pk(uint8_t *pk, const uint8_t *sk)
+{
+    fp opk;
+    int8_t isk[N];
+
+    secsidh_oct2sk(isk, sk);
+    action((public_key *)&opk, &base, (private_key *)isk);
+    secsidh_clear(isk, sizeof(isk));
+    secsidh_pk2oct(pk, &opk);
+    return SECSIDH_SUCCESS;
+}
+
 int secsidh_derive(uint8_t *ss, const uint8_t *peer_pk, const uint8_t *sk)
 {
     fp ipeer_pk[2], iss[1];

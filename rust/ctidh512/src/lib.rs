@@ -39,6 +39,7 @@ const SECSIDH_SUCCESS: i32 = 0;
 #[link(name = "ctidh512ffi")]
 extern "C" {
     fn secsidh_keygen(pk: *mut u8, sk: *mut u8) -> i32;
+    fn secsidh_sk_to_pk(pk: *mut u8, sk: *const u8) -> i32;
     fn secsidh_derive(ss: *mut u8, pk: *const u8, sk: *const u8) -> i32;
 }
 
@@ -53,6 +54,36 @@ pub fn keygen_raw(pk: &mut PublicKey, sk: &mut SecretKey) -> Result<(), ()> {
     } else {
         Err(())
     }
+}
+
+/// Raw FFI: compute public key from secret key (sk -> pk).
+///
+/// Returns `Ok(())` on success.
+#[inline]
+pub fn sk_to_pk_raw(pk: &mut PublicKey, sk: &SecretKey) -> Result<(), ()> {
+    let ret = unsafe { secsidh_sk_to_pk(pk.as_mut_ptr(), sk.as_ptr()) };
+    if ret == SECSIDH_SUCCESS {
+        Ok(())
+    } else {
+        Err(())
+    }
+}
+
+/// Compute public key from secret key.
+///
+/// # Example
+///
+/// ```
+/// use ctidh512::{keygen, sk_to_pk, PublicKey, SecretKey};
+/// let (pk, sk) = keygen();
+/// let pk2 = sk_to_pk(&sk).expect("sk_to_pk");
+/// assert_eq!(pk, pk2);
+/// ```
+#[inline]
+pub fn sk_to_pk(sk: &SecretKey) -> Result<PublicKey, ()> {
+    let mut pk = [0u8; PK_SIZE];
+    sk_to_pk_raw(&mut pk, sk)?;
+    Ok(pk)
 }
 
 /// Raw FFI: derive shared secret.
@@ -125,5 +156,12 @@ mod tests {
         assert_eq!(sk.len(), SK_SIZE);
         let ss = derive(&pk, &sk).unwrap();
         assert_eq!(ss.len(), SS_SIZE);
+    }
+
+    #[test]
+    fn test_sk_to_pk() {
+        let (pk, sk) = keygen();
+        let pk_from_sk = sk_to_pk(&sk).expect("sk_to_pk");
+        assert_eq!(pk, pk_from_sk);
     }
 }

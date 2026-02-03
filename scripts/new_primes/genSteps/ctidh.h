@@ -34,6 +34,8 @@ void internal_keygen(fp* pk, int8_t* sk);			// key generation (both secret and p
 bool internal_derive(fp* ss, fp* const pk, int8_t* const sk);	// secret sharing derivation
 
 int secsidh_keygen(uint8_t *pk, uint8_t *sk);
+/** Compute public key from secret key. */
+int secsidh_sk_to_pk(uint8_t *pk, const uint8_t *sk);
 int secsidh_derive(uint8_t *ss, const uint8_t *peer_pk, const uint8_t *sk);
 
 // #define sk_print NAMESPACEBITS(sk_print)
