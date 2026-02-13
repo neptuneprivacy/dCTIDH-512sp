@@ -19,22 +19,22 @@ uintbig_1:
 
 .global uintbig_p
 uintbig_p:
-    .quad 0xffffffffffffffff, 0xffffffffffffffff, 0x1a4e7259791eb7c6, 0xc78b12299976cb27
-    .quad 0x40957d6f8f4eefaf, 0x8ffeff94c902ca22, 0x73639a8f569fa6ec, 0x1d27849f6ad5422f
-    .quad 0xa6b7c2dbc3e4ba59, 0x2d6e32f80b586256, 0xae3aca78e5fbf71d, 0x0c15de19db59fa2b
-    .quad 0x36bc9759ca4f0ce2, 0x379e36e4b2f1163c, 0xe6382dae93f88c3b, 0x784c1c15a2ded607
-    .quad 0xdb9e7de9cbcf8b44, 0x9d5b40172fe822b5, 0x47316a628ac1370f, 0x2393f9d91ea58d43
-    .quad 0xc9a4fc304dc5c4e5, 0xa72558418ae7f8ba, 0x0ec346f18ea31665, 0x1a45b3b1648b3491
-    .quad 0xe073182c4b2751ba, 0x4aebe581002b7b97, 0xd9ce337ead999577, 0xdac8fa384f69f49f
-    .quad 0x1ddc9ec0d0eccde2, 0x64b02df13c4de83a, 0x8923fccd36909b2a, 0x001dbab9b37f01df
+    .quad 0xffffffffffffffff, 0xcb336e65dd9ab972, 0x31da9904076e6a70, 0x9f825d7bea428f54
+    .quad 0x80b1d7895deabe60, 0xd3b3cde44a99ebd8, 0x2c433638fe69f531, 0x46c02600030671e2
+    .quad 0x3eb36ebf24eb264f, 0x5872fd3292cf3725, 0x25261b882c99a891, 0x5aa0c7a8e51c618f
+    .quad 0xdfe30228dc090a5e, 0x1235fff9c3496720, 0x556d82dfb25a19e0, 0xaf0d91a49ad1fcf6
+    .quad 0x5cfe8bddcaaf7214, 0x67d90f84820f3740, 0x85dd61c29f9ea3fa, 0x1b493e97510173ba
+    .quad 0x57963f8a2ef281c0, 0x215b3ca607652a95, 0xbe13d52039838268, 0xc1b8b0ac479fc5eb
+    .quad 0xaacddf254a1ceff1, 0x5d89b511362ee752, 0x5c935f8b2c251c39, 0x3336ccfc4dd81041
+    .quad 0x0fe4aea834b8f332, 0x08aa77cdce5cca52, 0x2dd1afc034e7a378, 0x4b5882ea64ea57e7
 
 .global uintbig_four_sqrt_p
 uintbig_four_sqrt_p:
-    .quad 0xb10129ea716d1e24, 0xc4c7e804730ce981, 0x52ce96ef983378ed, 0xf5718ddc03eab39d
-    .quad 0x021a60e22d237abc, 0xf9dd8edfbf11ba9f, 0x8f60cede3ad953ee, 0x3deddd354143da07
-    .quad 0x89eb72e753df6f89, 0x475c71db91bb3992, 0x380b646b0d4e1cdf, 0xb23373eaf57f70cc
-    .quad 0xf40cd7321d620c99, 0x7fb8b1c215b6cc33, 0xac1a503033bd4257, 0x15cf538073a1f782
-    .quad 0, 0, 0, 0
+    .quad 0x828c5b71c63ded09, 0x53568dfb25b9e64b, 0x88ed2a85fe7c83f8, 0xd141c0753910d662
+    .quad 0x132eeff80db164da, 0x8826735eb8597692, 0x897d813f6f963472, 0x221ca7b1f40d304a
+    .quad 0x38b3d211dff4f3f4, 0x07463586b8f131fc, 0xaf328a440f017948, 0x3a016ee0b4c48850
+    .quad 0xe6087107526f888a, 0xa39c1d32230c1263, 0x94b9d5d2b6451926, 0x2b884784e60b8d0c
+    .quad 2, 0, 0, 0
     .quad 0, 0, 0, 0
     .quad 0, 0, 0, 0
     .quad 0, 0, 0, 0

@@ -1,0 +1,19 @@
+[package]
+name = "ctidh2048"
+version = "0.1.0"
+edition = "2021"
+description = "FFI bindings to dCTIDH 2048-bit (CTIDH key exchange)"
+license = "CC0-1.0"
+repository = "https://github.com/dctidh/dCTIDH"
+readme = "README.md"
+
+[lib]
+name = "ctidh2048"
+path = "src/lib.rs"
+
+[dependencies]
+
+[build-dependencies]
+
+[features]
+default = []

@@ -7,51 +7,51 @@
 
 .section .rodata
 
-.set pbits,2037
-.set pbytes,255
+.set pbits,2047
+.set pbytes,256
 .set plimbs,32
 .inv_min_p_mod_r: /* -p^-1 mod 2^64 */
     .quad 1
 
 .global fp_0
 fp_0:
-    .zero 255
+    .zero 256
 
 .global fp_1
 fp_1: /* 2^2048 mod p */
-    .quad 0x000000000000089c, 0, 0x849f85b13b89cabc, 0x0eafa1dac542fb59
-    .quad 0xf8fc138a346872a6, 0x489f9b0d6bfbc11b, 0x927955f2397ee358, 0xffc633843bfa2f7a
-    .quad 0xa9ee63f57acba8c8, 0xdf41307e53115dfc, 0xfdd8d723fabc80cc, 0xf3bbd963855a2fef
-    .quad 0xc058f6f63f6d15df, 0x29df670b6c649198, 0xf456b4fe1028b22d, 0x50be35b9c98553fd
-    .quad 0x377bf729512cfe84, 0x4264385f8d752a51, 0x1290179d6889f591, 0xb204f6bc26b3d0c7
-    .quad 0xf794d0226d54db41, 0xfa7c2bb81ade97df, 0xe6c93857fbeb2cd4, 0xcfe8f4c261876f24
-    .quad 0xa11be2a8f97c61c5, 0xf9141d6289a3f06f, 0xd4bca96169bd30f6, 0x65b5c3344bc9efc8
-    .quad 0xe8993bf9494372ec, 0x2334771cd144aba6, 0x4e2b893e3b081f05, 0x000c693aa68bdf7f
+    .quad 3, 0x9e65b4ce672fd3a7, 0x6a7034f3e9b4c0ad, 0x2178e78c41385203
+    .quad 0x7dea7963e63fc4de, 0x84e4965320323c76, 0x7b365d5504c2206a, 0x2bbf8dfff6ecaa59
+    .quad 0x43e5b3c2913e8d12, 0xf6a7086847925a90, 0x908dad677a33064b, 0xf01da90550aadb52
+    .quad 0x6056f9856be4e0e4, 0xc95e0012b623ca9d, 0xffb77760e8f1b25f, 0xf2d74b122f8a091c
+    .quad 0xe9045c669ff1a9c1, 0xc874d17279d25a3e, 0x6e67dab821241410, 0xae24443a0cfba4d0
+    .quad 0xf93d416173287abf, 0x9bee4a0de9d0803f, 0xc5c4809f537578c7, 0xbad5edfb2920ae3c
+    .quad 0xff96629021a9302a, 0xe762e0cc5d734a07, 0xea45e15e7b90ab53, 0x665b990b1677cf3b
+    .quad 0xd051f40761d52669, 0xe600989694e9a109, 0x768af0bf61491597, 0x1df67740d140f84a
 
 .global fp_2
 fp_2: /* 2^2049 mod p */
-    .quad 0x0000000000001138, 0, 0x093f0b6277139578, 0x1d5f43b58a85f6b3
-    .quad 0xf1f8271468d0e54c, 0x913f361ad7f78237, 0x24f2abe472fdc6b0, 0xff8c670877f45ef5
-    .quad 0x53dcc7eaf5975191, 0xbe8260fca622bbf9, 0xfbb1ae47f5790199, 0xe777b2c70ab45fdf
-    .quad 0x80b1edec7eda2bbf, 0x53bece16d8c92331, 0xe8ad69fc2051645a, 0xa17c6b73930aa7fb
-    .quad 0x6ef7ee52a259fd08, 0x84c870bf1aea54a2, 0x25202f3ad113eb22, 0x6409ed784d67a18e
-    .quad 0xef29a044daa9b683, 0xf4f8577035bd2fbf, 0xcd9270aff7d659a9, 0x9fd1e984c30ede49
-    .quad 0x4237c551f2f8c38b, 0xf2283ac51347e0df, 0xa97952c2d37a61ed, 0xcb6b86689793df91
-    .quad 0xd13277f29286e5d8, 0x4668ee39a289574d, 0x9c57127c76103e0a, 0x0018d2754d17befe
+    .quad 6, 0x3ccb699cce5fa74e, 0xd4e069e7d369815b, 0x42f1cf188270a406
+    .quad 0xfbd4f2c7cc7f89bc, 0x09c92ca6406478ec, 0xf66cbaaa098440d5, 0x577f1bffedd954b2
+    .quad 0x87cb6785227d1a24, 0xed4e10d08f24b520, 0x211b5acef4660c97, 0xe03b520aa155b6a5
+    .quad 0xc0adf30ad7c9c1c9, 0x92bc00256c47953a, 0xff6eeec1d1e364bf, 0xe5ae96245f141239
+    .quad 0xd208b8cd3fe35383, 0x90e9a2e4f3a4b47d, 0xdccfb57042482821, 0x5c48887419f749a0
+    .quad 0xf27a82c2e650f57f, 0x37dc941bd3a1007f, 0x8b89013ea6eaf18f, 0x75abdbf652415c79
+    .quad 0xff2cc52043526055, 0xcec5c198bae6940f, 0xd48bc2bcf72156a7, 0xccb732162cef9e77
+    .quad 0xa0a3e80ec3aa4cd2, 0xcc01312d29d34213, 0xed15e17ec2922b2f, 0x3becee81a281f094
 
 .global fp_p
 fp_p: /* p in Montgomery form = 0 */
-    .zero 255
+    .zero 256
 
 .r_squared_mod_p: /* (2^2048)^2 mod p */
-    .quad 0x42f984936b948cdf, 0xbe0648636d3e3896, 0x9496110a3050fc0c, 0xff5f389699f5fe20
-    .quad 0x796da748094fbee7, 0x87eb1dc1ab2c3351, 0x7ad03290108c150c, 0x9683578e78183f96
-    .quad 0xb339348810ccfe01, 0xefd925efc1a6a195, 0x3e30bb7b1c009c5f, 0xaccab946874e19cd
-    .quad 0x64c35f51cf8f0b83, 0x8f18aa4bb3abb271, 0x5cd36f98f43b510b, 0xf1440d5fe9d4009f
-    .quad 0x160524cb629b7076, 0x6f6210100a229cf6, 0x0eac00669b9dad9a, 0x0826bbf1186a04a4
-    .quad 0xfdece2cb4dd1f66b, 0xdb4c5efafe45e16c, 0xe82eb00ac3980794, 0x38f5448202f21d0c
-    .quad 0x3f8b2c6640b7a263, 0xdcf8c235fd1031ef, 0x15309d9032e8ecfb, 0xcfb7df8aed45f6e6
-    .quad 0xa88bb7b2eeaa4a90, 0x89cf48d67144b519, 0xdbd9ca6ab9a72d70, 0x0013d9575893d8bb
+    .quad 0x07f4dd8e5df23bb8, 0x5c776d52280157ed, 0x649f1ddaba652a4c, 0x5f82754e976e1c51
+    .quad 0x216a66554955b423, 0x837f16ebda6112ec, 0x449be2be3f1308ca, 0x0d417cf96fbd398e
+    .quad 0xf40ca379b3cfdd87, 0xe572142c0a18bef2, 0x174a98fef7cbbd6d, 0x92147fed3a21520a
+    .quad 0xc2fef4524fb5a582, 0x7ea04a000cf05b29, 0x0ee7604d0586aee7, 0x360c6b9e4402acbe
+    .quad 0x2412c3ab8629cc28, 0x11843e0f489cd4da, 0x965e567f2d69ada1, 0xc35fdb6e0a1ce3ac
+    .quad 0xdfce999b5be1d15d, 0xadfc765457b8334c, 0x178a9115f96b28ed, 0x7c25482f10317eef
+    .quad 0x87b1090c7f92ba82, 0xf6e929fcf67f4bb3, 0xdab73be93d26baa6, 0xa520e31962981efb
+    .quad 0xd1ebb498f914fb73, 0x71aaac9068f25b31, 0x18f8ee6aca512273, 0x2ea634b399d69cf7
 
 .section .data
 .global fp_mulsq_count
