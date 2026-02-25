@@ -19,12 +19,16 @@ fn main() {
     }
 
     // Build the 2048 library and ctidh_api2048.o (building ctidh-2048.main pulls all deps)
-    let status = Command::new("make")
-        .arg("-C")
-        .arg(&gensteps)
-        .arg("ctidh-2048.main")
-        .status()
-        .expect("failed to run make");
+    let target_arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
+
+    let mut make_cmd = Command::new("make");
+    make_cmd.arg("-C").arg(&gensteps);
+    if target_arch == "aarch64" {
+        make_cmd.arg("ARCH=arm64");
+    }
+    make_cmd.arg("ctidh-2048.main");
+
+    let status = make_cmd.status().expect("failed to run make");
     if !status.success() {
         panic!("make ctidh-2048.main failed");
     }
