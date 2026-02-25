@@ -463,3 +463,16 @@ test_pubkey_compare: test_pubkey_compare512 test_pubkey_compare2048
 	@echo "--- CTIDH-2048 ---"; ./test_pubkey_compare2048
 	@echo "--- Comparison: both keygen_ok=1 derive_match=1 and PK_SIZE differ ---"
 
+# ----- ARM/mobile: use C sources instead of x86 .S (override when ARCH=arm64)
+ifeq ($(ARCH),arm64)
+uintbig512.o: uintbig512_c.c uintbig.h uintbig_namespace.h Makefile
+	$(CC) -DBITS=512 -D'NAMESPACEBITS(x)=highctidh_512_##x' -D'NAMESPACEGENERIC(x)=highctidh_##x' -c uintbig512_c.c -o uintbig512.o
+fp512.o: fp512_c.c fp.h fp_namespace.h uintbig.h uintbig_namespace.h Makefile
+	$(CC) -DBITS=512 -D'NAMESPACEBITS(x)=highctidh_512_##x' -D'NAMESPACEGENERIC(x)=highctidh_##x' -c fp512_c.c -o fp512.o
+uintbig2048.o: uintbig2048_c.c uintbig.h uintbig_namespace.h Makefile
+	$(CC) -DBITS=2048 -D'NAMESPACEBITS(x)=highctidh_2048_##x' -D'NAMESPACEGENERIC(x)=highctidh_##x' -c uintbig2048_c.c -o uintbig2048.o
+fp2048.o: fp2048_c.c fp.h fp_namespace.h uintbig.h uintbig_namespace.h Makefile
+	$(CC) -DBITS=2048 -D'NAMESPACEBITS(x)=highctidh_2048_##x' -D'NAMESPACEGENERIC(x)=highctidh_##x' -c fp2048_c.c -o fp2048.o
+int32_sort.o: int32_sort_portable.c int32_sort.h Makefile
+	$(CC) -D'NAMESPACEGENERIC(x)=highctidh_##x' -c int32_sort_portable.c -o int32_sort.o
+endif

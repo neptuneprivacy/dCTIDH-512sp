@@ -19,12 +19,16 @@ fn main() {
     }
 
     // Build the 512 library and ctidh_api512.o (building ctidh-512.main pulls all deps)
-    let status = Command::new("make")
-        .arg("-C")
-        .arg(&gensteps)
-        .arg("ctidh-512.main")
-        .status()
-        .expect("failed to run make");
+    let target_arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
+
+    let mut make_cmd = Command::new("make");
+    make_cmd.arg("-C").arg(&gensteps);
+    if target_arch == "aarch64" {
+        make_cmd.arg("ARCH=arm64");
+    }
+    make_cmd.arg("ctidh-512.main");
+
+    let status = make_cmd.status().expect("failed to run make");
     if !status.success() {
         panic!("make ctidh-512.main failed");
     }
