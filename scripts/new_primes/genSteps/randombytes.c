@@ -1,12 +1,28 @@
 #include "randombytes.h"
 
 #include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 // #include "crypto_classify.h"
 
-#if defined(GETRANDOM) && !defined(__APPLE__)
+#if defined(_WIN32)
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <bcrypt.h>
+
+void randombytes(void *x, size_t l)
+{
+  unsigned char *p = (unsigned char *) x;
+  while (l > 0) {
+    ULONG n = l > 0x7fffffff ? 0x7fffffff : (ULONG) l;
+    if (!BCRYPT_SUCCESS(BCryptGenRandom(NULL, p, n, BCRYPT_USE_SYSTEM_PREFERRED_RNG)))
+      exit(2);
+    p += n;
+    l -= n;
+  }
+}
+
+#elif defined(GETRANDOM) && !defined(__APPLE__)
+#include <unistd.h>
 #include <sys/random.h>
 
 void randombytes(void *x, size_t l)
@@ -19,6 +35,8 @@ void randombytes(void *x, size_t l)
 }
 
 #else
+#include <unistd.h>
+#include <fcntl.h>
 
 void randombytes(void *x, size_t l)
 {

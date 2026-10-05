@@ -6,6 +6,7 @@ Rust FFI for **dCTIDH 512-bit** (CTIDH key exchange). Easy to use from any Rust 
 
 - Rust toolchain
 - C build (make, ar, clang or gcc) – used at compile time to build the C library from `scripts/new_primes/genSteps`
+- On Windows: LLVM's `clang-cl` instead of make (MSVC's `cl.exe` lacks the 128-bit integer type the field arithmetic needs). It is looked up on `PATH`, then in `C:\Program Files\LLVM\bin`; set `CTIDH512_CLANG_CL` to override.
 - Run **once** from repo root: `cd scripts/new_primes/genSteps && python3 autogen` (generates Makefile and 512 sources)
 
 ## Usage in your project
@@ -45,6 +46,8 @@ fn main() {
 ## Build
 
 The crate’s `build.rs` runs `make -C scripts/new_primes/genSteps ctidh-512.main`, then builds a single static library and links it. Ensure `autogen` has been run in `genSteps` before the first `cargo build`.
+
+The x86-64 assembly field arithmetic is used on x86-64 Linux only. macOS, ARM and Windows use the portable C implementation, which is several times slower but gives identical keys and shared secrets. On Windows the C sources are compiled with the `cc` crate rather than make. To check a portable build against the assembly on x86-64 Linux, set `CTIDH512_BUILD` to `make-asm`, `make-portable` or `cc`.
 
 ## License
 
